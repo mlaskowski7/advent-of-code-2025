@@ -7,7 +7,17 @@ import (
 	"github.com/mlaskowski7/advent-of-code-2025/utils"
 )
 
-func GetInvalidIDsSum() (int, error) {
+type IsSillyDelegate func(num int) bool
+
+func GetInvalidIDsSumPart1() (int, error) {
+	return GetInvalidIDsSum(isSillyPart1)
+}
+
+func GetInvalidIDsSumPart2() (int, error) {
+	return GetInvalidIDsSum(isSillyPart2)
+}
+
+func GetInvalidIDsSum(isSilly IsSillyDelegate) (int, error) {
 	ranges, err := utils.ReadSingleLineInputSeparatedByCommas("day2/input.txt")
 	if err != nil {
 		return 0, err
@@ -35,8 +45,20 @@ func GetInvalidIDsSum() (int, error) {
 	return sum, nil
 }
 
-func isSilly(num int) bool {
+func isSillyPart1(num int) bool {
 	numAsStr := strconv.Itoa(num)
 	half := len(numAsStr) / 2
 	return numAsStr[:half] == numAsStr[half:]
+}
+
+func isSillyPart2(num int) bool {
+	numAsStr := strconv.Itoa(num)
+
+	for i := 1; i < len(numAsStr); i++ {
+		if i*2 <= len(numAsStr) && numAsStr[i:i*2] == numAsStr[:i] {
+			return true
+		}
+	}
+
+	return false
 }
