@@ -54,8 +54,22 @@ func isSillyPart1(num int) bool {
 func isSillyPart2(num int) bool {
 	numAsStr := strconv.Itoa(num)
 
-	for i := 1; i < len(numAsStr); i++ {
-		if i*2 <= len(numAsStr) && numAsStr[i:i*2] == numAsStr[:i] {
+	strLen := len(numAsStr)
+	for i := 1; i <= strLen/2; i++ {
+		if strLen%i != 0 {
+			continue
+		}
+
+		left := numAsStr[:i]
+		isMatch := true
+		for j := i; j < strLen; j += i {
+			if numAsStr[j:j+i] != left {
+				isMatch = false
+				break
+			}
+		}
+
+		if isMatch {
 			return true
 		}
 	}
