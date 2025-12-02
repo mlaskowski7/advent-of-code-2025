@@ -3,6 +3,7 @@ package utils
 import (
 	"bufio"
 	"os"
+	"strings"
 )
 
 func ReadLines(path string) ([]string, error) {
@@ -21,4 +22,21 @@ func ReadLines(path string) ([]string, error) {
 		return nil, err
 	}
 	return lines, nil
+}
+
+func ReadSingleLineInputSeparatedByCommas(path string) ([]string, error) {
+	f, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	defer f.Close()
+
+	scanner := bufio.NewScanner(f)
+	scanner.Scan()
+	line := scanner.Text()
+	if err := scanner.Err(); err != nil {
+		return nil, err
+	}
+
+	return strings.Split(line, ","), nil
 }
