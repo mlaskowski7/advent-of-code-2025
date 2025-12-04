@@ -59,5 +59,11 @@ func main() {
 	} else {
 		fmt.Printf("Day 4, Part 1 answer is %d\n", accessibleRollsCount)
 	}
+	accessibleRollsCountPart2, err := day4.GetAccessibleRollsCountPart2()
+	if err != nil {
+		fmt.Printf("An error occured while getting solution for day 4 part 2 - %v", err)
+	} else {
+		fmt.Printf("Day 4, Part 2 answer is %d\n", accessibleRollsCountPart2)
+	}
 
 }

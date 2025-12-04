@@ -23,6 +23,35 @@ func GetAccessibleRollsCount() (int, error) {
 	return counter, nil
 }
 
+func GetAccessibleRollsCountPart2() (int, error) {
+	matrix, err := utils.ReadInputAsMatrix("day4/input.txt")
+	if err != nil {
+		return 0, err
+	}
+
+	rows := len(matrix)
+	cols := len(matrix[0])
+
+	totalRemoved := 0
+	for {
+		removedThisRound := 0
+		for row := range matrix {
+			for col := range matrix[row] {
+				if matrix[row][col] == '@' && IsValid(row, col, rows, cols, matrix) {
+					matrix[row][col] = 'x'
+					removedThisRound++
+				}
+			}
+		}
+		if removedThisRound == 0 {
+			break
+		}
+		totalRemoved += removedThisRound
+	}
+
+	return totalRemoved, nil
+}
+
 func IsValid(row, col, rowsLen, colsLen int, matrix [][]rune) bool {
 	found := 0
 	for i := -1; i <= 1; i++ {
