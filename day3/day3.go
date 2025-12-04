@@ -28,6 +28,32 @@ func GetTotalMaxJoltage() (int, error) {
 	return total, nil
 }
 
+func GetTotalMaxJoltagePart2() (int, error) {
+	banks, err := utils.ReadLines("day3/input.txt")
+	if err != nil {
+		return 0, err
+	}
+
+	total := 0
+	for _, bank := range banks {
+		joltageAsStr := ""
+		start := 0
+		for i := 0; i < 12; i++ {
+			maxIndex := getMaxIndex(bank, start, len(bank)-(12-i)+1)
+			start = maxIndex + 1
+			joltageAsStr += string(bank[maxIndex])
+		}
+
+		joltageAsInt, err := strconv.Atoi(joltageAsStr)
+		if err != nil {
+			return 0, err
+		}
+		total += joltageAsInt
+	}
+
+	return total, nil
+}
+
 func getMaxIndex(bank string, start, end int) int {
 	sub := bank[start:end]
 	maxIdx := 0

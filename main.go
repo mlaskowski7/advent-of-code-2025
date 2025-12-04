@@ -44,5 +44,11 @@ func main() {
 	} else {
 		fmt.Printf("Day 3, Part 1 answer is %d\n", totalMaxJoltage)
 	}
+	totalMaxJoltagePart2, err := day3.GetTotalMaxJoltagePart2()
+	if err != nil {
+		fmt.Printf("An error occured while getting solution for day 3 part 2 - %v", err)
+	} else {
+		fmt.Printf("Day 3, Part 2 answer is %d\n", totalMaxJoltagePart2)
+	}
 
 }
