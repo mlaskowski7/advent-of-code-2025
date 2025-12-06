@@ -8,6 +8,7 @@ import (
 	"github.com/mlaskowski7/advent-of-code-2025/day3"
 	"github.com/mlaskowski7/advent-of-code-2025/day4"
 	"github.com/mlaskowski7/advent-of-code-2025/day5"
+	"github.com/mlaskowski7/advent-of-code-2025/day6"
 )
 
 func main() {
@@ -79,6 +80,14 @@ func main() {
 		fmt.Printf("An error occured while getting solution for day 5 part 2 - %v", err)
 	} else {
 		fmt.Printf("Day 5, Part 2 answer is %d\n", totalFreshIDs)
+	}
+
+	// day 6
+	calculationsSum, err := day6.GetCalculationsSum()
+	if err != nil {
+		fmt.Printf("An error occured while getting solution for day 6 part 1 - %v\n", err)
+	} else {
+		fmt.Printf("Day 6, Part 1 answer is %d\n", calculationsSum)
 	}
 
 }
