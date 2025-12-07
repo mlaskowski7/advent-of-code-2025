@@ -9,6 +9,7 @@ import (
 	"github.com/mlaskowski7/advent-of-code-2025/day4"
 	"github.com/mlaskowski7/advent-of-code-2025/day5"
 	"github.com/mlaskowski7/advent-of-code-2025/day6"
+	"github.com/mlaskowski7/advent-of-code-2025/day7"
 )
 
 func main() {
@@ -96,4 +97,11 @@ func main() {
 		fmt.Printf("Day 6, Part 2 answer is %d\n", calculationsSumPart2)
 	}
 
+	// day 7
+	splitsCount, err := day7.GetTotalCountOfSplits()
+	if err != nil {
+		fmt.Printf("An error occured while getting solution for day 7 part 1 - %v\n", err)
+	} else {
+		fmt.Printf("Day 7, Part 1 answer is %d\n", splitsCount)
+	}
 }
