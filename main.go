@@ -104,4 +104,10 @@ func main() {
 	} else {
 		fmt.Printf("Day 7, Part 1 answer is %d\n", splitsCount)
 	}
+	timelinesCount, err := day7.GetTotalTimelines()
+	if err != nil {
+		fmt.Printf("An error occured while getting solution for day 7 part 2 - %v\n", err)
+	} else {
+		fmt.Printf("Day 7, Part 2 answer is %d\n", timelinesCount)
+	}
 }
