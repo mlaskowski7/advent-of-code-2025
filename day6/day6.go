@@ -1,9 +1,6 @@
 package day6
 
 import (
-	"strconv"
-	"strings"
-
 	"github.com/mlaskowski7/advent-of-code-2025/utils"
 )
 
@@ -17,73 +14,118 @@ func GetCalculationsSum() (int, error) {
 		return 0, nil
 	}
 
-	operations := lines[len(lines)-1]
+	G := make([][]rune, len(lines))
+	for i, line := range lines {
+		G[i] = []rune(line)
+	}
 
-	grid := make([][]int, 0)
-	for i := 0; i < len(lines)-1; i++ {
-		gridRow := []int{}
-		split := strings.Split(lines[i], " ")
-		for _, elem := range split {
-			if elem != "" {
-				parsed, err := strconv.Atoi(elem)
-				if err != nil {
-					return 0, err
+	R := len(G)
+	C := len(G[0])
+
+	p1 := 0
+	startC := 0
+
+	for cc := 0; cc <= C; cc++ {
+		isBlank := true
+		if cc < C {
+			for r := 0; r < R; r++ {
+				if G[r][cc] != ' ' {
+					isBlank = false
+					break
 				}
-				gridRow = append(gridRow, parsed)
 			}
 		}
-		if len(gridRow) > 0 {
-			grid = append(grid, gridRow)
+
+		if isBlank {
+			op := G[R-1][startC]
+
+			p1Score := 0
+			if op == '*' {
+				p1Score = 1
+			}
+
+			for r := 0; r < R-1; r++ {
+				p1N := 0
+				for c := startC; c < cc; c++ {
+					if G[r][c] != ' ' {
+						digit := int(G[r][c] - '0')
+						p1N = p1N*10 + digit
+					}
+				}
+				if op == '*' {
+					p1Score *= p1N
+				} else {
+					p1Score += p1N
+				}
+			}
+
+			p1 += p1Score
+			startC = cc + 1
 		}
 	}
 
-	if len(grid) == 0 {
+	return p1, nil
+}
+
+func GetCalculationsSumPart2() (int, error) {
+	lines, err := utils.ReadLines("day6/input.txt")
+	if err != nil {
+		return 0, err
+	}
+
+	if len(lines) == 0 {
 		return 0, nil
 	}
 
-	numCols := len(grid[0])
-
-	grandTotal := 0
-	opIdx := 0
-
-	for col := 0; col < numCols; col++ {
-		isEmpty := true
-		numbers := []int{}
-
-		for row := 0; row < len(grid); row++ {
-			if col < len(grid[row]) && grid[row][col] != 0 {
-				isEmpty = false
-				numbers = append(numbers, grid[row][col])
-			}
-		}
-
-		if isEmpty || len(numbers) == 0 {
-			continue
-		}
-
-		for opIdx < len(operations) && operations[opIdx] == ' ' {
-			opIdx++
-		}
-
-		if opIdx >= len(operations) {
-			break
-		}
-
-		op := operations[opIdx]
-		opIdx++
-
-		result := numbers[0]
-		for i := 1; i < len(numbers); i++ {
-			switch op {
-			case '+':
-				result += numbers[i]
-			case '*':
-				result *= numbers[i]
-			}
-		}
-
-		grandTotal += result
+	G := make([][]rune, len(lines))
+	for i, line := range lines {
+		G[i] = []rune(line)
 	}
 
-	return grandTotal, nil
+	R := len(G)
+	C := len(G[0])
+
+	p2 := 0
+	startC := 0
+
+	for cc := 0; cc <= C; cc++ {
+		isBlank := true
+		if cc < C {
+			for r := 0; r < R; r++ {
+				if G[r][cc] != ' ' {
+					isBlank = false
+					break
+				}
+			}
+		}
+
+		if isBlank {
+			op := G[R-1][startC]
+
+			score := 0
+			if op == '*' {
+				score = 1
+			}
+
+			for c := cc - 1; c >= startC; c-- {
+				n := 0
+				for r := 0; r < R-1; r++ {
+					if G[r][c] != ' ' {
+						digit := int(G[r][c] - '0')
+						n = n*10 + digit
+					}
+				}
+				if op == '+' {
+					score += n
+				} else {
+					score *= n
+				}
+			}
+
+			p2 += score
+			startC = cc + 1
+		}
+	}
+
+	return p2, nil
 }

@@ -89,5 +89,11 @@ func main() {
 	} else {
 		fmt.Printf("Day 6, Part 1 answer is %d\n", calculationsSum)
 	}
+	calculationsSumPart2, err := day6.GetCalculationsSumPart2()
+	if err != nil {
+		fmt.Printf("An error occured while getting solution for day 6 part 2 - %v\n", err)
+	} else {
+		fmt.Printf("Day 6, Part 2 answer is %d\n", calculationsSumPart2)
+	}
 
 }
