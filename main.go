@@ -10,6 +10,7 @@ import (
 	"github.com/mlaskowski7/advent-of-code-2025/day5"
 	"github.com/mlaskowski7/advent-of-code-2025/day6"
 	"github.com/mlaskowski7/advent-of-code-2025/day7"
+	"github.com/mlaskowski7/advent-of-code-2025/day8"
 )
 
 func main() {
@@ -109,5 +110,19 @@ func main() {
 		fmt.Printf("An error occured while getting solution for day 7 part 2 - %v\n", err)
 	} else {
 		fmt.Printf("Day 7, Part 2 answer is %d\n", timelinesCount)
+	}
+
+	// day 8
+	threeLargestCircuitsProduct, err := day8.GetThreeLargestCircuitsProduct()
+	if err != nil {
+		fmt.Printf("An error occured while getting solution for day 8 part 1 - %v\n", err)
+	} else {
+		fmt.Printf("Day 8, Part 1 answer is %d\n", threeLargestCircuitsProduct)
+	}
+	lastConnectionXProduct, err := day8.GetLastConnectionXProduct()
+	if err != nil {
+		fmt.Printf("An error occured while getting solution for day 8 part 2 - %v\n", err)
+	} else {
+		fmt.Printf("Day 8, Part 2 answer is %d\n", lastConnectionXProduct)
 	}
 }
