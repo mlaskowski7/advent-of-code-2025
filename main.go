@@ -134,4 +134,10 @@ func main() {
 	} else {
 		fmt.Printf("Day 9, Part 1 answer is %d\n", largestRectangleArea)
 	}
+	largestRectangleAreaPart2, err := day9.GetLargestRectangleAreaPart2()
+	if err != nil {
+		fmt.Printf("An error occured while getting solution for day 9 part 2 - %v\n", err)
+	} else {
+		fmt.Printf("Day 9, Part 2 answer is %d\n", largestRectangleAreaPart2)
+	}
 }
