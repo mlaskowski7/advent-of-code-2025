@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/mlaskowski7/advent-of-code-2025/day1"
+	"github.com/mlaskowski7/advent-of-code-2025/day10"
 	"github.com/mlaskowski7/advent-of-code-2025/day2"
 	"github.com/mlaskowski7/advent-of-code-2025/day3"
 	"github.com/mlaskowski7/advent-of-code-2025/day4"
@@ -139,5 +140,13 @@ func main() {
 		fmt.Printf("An error occured while getting solution for day 9 part 2 - %v\n", err)
 	} else {
 		fmt.Printf("Day 9, Part 2 answer is %d\n", largestRectangleAreaPart2)
+	}
+
+	// day 10
+	fewestPresses, err := day10.GetFewestButtonPreses()
+	if err != nil {
+		fmt.Printf("An error occured while getting solution for day 10 part 1 - %v\n", err)
+	} else {
+		fmt.Printf("Day 10, Part 1 answer is %d\n", fewestPresses)
 	}
 }
