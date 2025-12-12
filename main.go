@@ -149,4 +149,10 @@ func main() {
 	} else {
 		fmt.Printf("Day 10, Part 1 answer is %d\n", fewestPresses)
 	}
+	fewestPressesPart2, err := day10.GetFewestButtonPresesPart2()
+	if err != nil {
+		fmt.Printf("An error occured while getting solution for day 10 part 2 - %v\n", err)
+	} else {
+		fmt.Printf("Day 10, Part 2 answer is %d\n", fewestPressesPart2)
+	}
 }
