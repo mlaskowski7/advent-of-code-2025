@@ -6,6 +6,7 @@ import (
 	"github.com/mlaskowski7/advent-of-code-2025/day1"
 	"github.com/mlaskowski7/advent-of-code-2025/day10"
 	"github.com/mlaskowski7/advent-of-code-2025/day11"
+	"github.com/mlaskowski7/advent-of-code-2025/day12"
 	"github.com/mlaskowski7/advent-of-code-2025/day2"
 	"github.com/mlaskowski7/advent-of-code-2025/day3"
 	"github.com/mlaskowski7/advent-of-code-2025/day4"
@@ -169,5 +170,13 @@ func main() {
 		fmt.Printf("An error occured while getting solution for day 11 part 2 - %v\n", err)
 	} else {
 		fmt.Printf("Day 11, Part 2 answer is %d\n", pathsCountPart2)
+	}
+
+	// day 12
+	regionsCount, err := day12.GetRegionsCount()
+	if err != nil {
+		fmt.Printf("An error occured while getting solution for day 12 part 1 - %v\n", err)
+	} else {
+		fmt.Printf("Day 12, Part 1 answer is %d\n", regionsCount)
 	}
 }
