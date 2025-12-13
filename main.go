@@ -164,4 +164,10 @@ func main() {
 	} else {
 		fmt.Printf("Day 11, Part 1 answer is %d\n", pathsCount)
 	}
+	pathsCountPart2, err := day11.GetPathsCountPart2()
+	if err != nil {
+		fmt.Printf("An error occured while getting solution for day 11 part 2 - %v\n", err)
+	} else {
+		fmt.Printf("Day 11, Part 2 answer is %d\n", pathsCountPart2)
+	}
 }
